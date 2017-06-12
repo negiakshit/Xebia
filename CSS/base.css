@@ -1,0 +1,27 @@
+/*all css styling goes here*/
+
+.account-details .font-gray{
+  color: #ccc;
+}
+.account-details .jumbo-background{
+  background-color: #16568e;
+  color: white;
+  border-radius: 0;
+  text-align: center;
+}
+
+.account-details ul {
+  list-style-type: circle;
+}
+.account-details ul li{
+  cursor: pointer;
+}
+
+.account-details .disclaimer{
+  color: #16568e;
+}
+
+
+.account-details .font-bold{
+  font-weight: bold;
+}

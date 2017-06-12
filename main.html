@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <!--<meta charset="UTF-8" />-->
+    <script src="JS/angular.min.js"></script>
+    <link data-require="bootstrap-css@*" data-semver="4.0.0-alpha.2" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" />
+    <script src="JS/ui-bootstrap.js"></script>
+    <link href="CSS/base.css" rel="stylesheet" />
+    <script src="JS/main.js"></script>
+</head>
+
+
+<body class="body account-details" ng-controller="mainCtrl as myCtrl">
+  <div class="jumbotron text-center jumbo-background">
+    <h1>Welcome to Internet Banking: <span class="font-gray"> {{myCtrl.userFulName}}</span></h1>
+
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <h3 >Login Details</h3>
+        <span class="font-bold">Last Login: </span><p>{{myCtrl.lastLoginDetails}}</p>
+        <span class="font-bold">Current Locaion: </span><p>{{myCtrl.userData.location}}</p>
+        <span class="font-bold">Memebership Type: </span><p>{{myCtrl.userData.category | uppercase}}</p>
+      </div>
+      <div class="col-sm-4">
+        <h3>Accounts</h3>
+        <span class="font-bold">Sort By: </span><select ng-model="myCtrl.sort">
+          <option value="name"> Name
+          </option>
+          <option value="order"> Order
+          </option>
+        </select>
+        <ul>
+          <li ng-repeat="myAccounts in myCtrl.accountType"><span class="font-bold">{{myAccounts.Category | capitalize}}</span>
+              <ul>
+                <li ng-repeat = "allAccount in myAccounts.AccountList | orderBy : myCtrl.sorterFunc" ng-click ="myCtrl.showDetails(allAccount);">{{allAccount.name}}
+                </li>
+              </ul>
+          </li>
+        </ul>
+        <p class="disclaimer">* Click on the account type to get account detials</p>
+
+      </div>
+      <div class="col-sm-4" ng-show="myCtrl.showDetailsTab">
+        <h3>Account Details</h3>
+        <div ng-show="myCtrl.detailedAccount.name"><span class="font-bold">Name: </span><span>{{myCtrl.detailedAccount.name}}</span></div>
+        <div ng-show="myCtrl.detailedAccount.branch"><span class="font-bold">Branch: </span><span>{{myCtrl.detailedAccount.branch}}</span></div>
+        <div ng-show="myCtrl.detailedAccount.balance"><span class="font-bold">Balance: </span><span>{{myCtrl.detailedAccount.balance}}</span></div>
+        <div ng-show="myCtrl.detailedAccount.limit"><span class="font-bold">Limit: </span><span>{{myCtrl.detailedAccount.limit}}</span></div>
+        <div ng-show="myCtrl.detailedAccount.currency"><span class="font-bold">Currency: </span><span>{{myCtrl.detailedAccount.currency}}</span></div>
+
+
+
+      </div>
+
+
+
+    </div>
+  </div>
+</body>
+</html>
